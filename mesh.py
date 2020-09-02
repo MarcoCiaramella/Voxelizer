@@ -1,4 +1,6 @@
 from voxel import Voxel
+from color import Color
+
 
 
 class Mesh:
@@ -31,8 +33,18 @@ class Mesh:
         for x in range(self.size_x):
             for y in range(self.size_y):
                 for z in range(self.size_z):
-                    rgba = pixels_front[x,y]
-                    print("alpha "+str(rgba[3]))
+                    if pixels_front[x,y][Color.A] == 0:
+                        continue
+                    if pixels_back[x,y][Color.A] == 0:
+                        continue
+                    if pixels_right[z,y][Color.A] == 0:
+                        continue
+                    if pixels_left[z,y][Color.A] == 0:
+                        continue
+                    if pixels_top[z,x][Color.A] == 0:
+                        continue
+                    if pixels_bottom[z,x][Color.A] == 0:
+                        continue
 
     def print(self):
         for x in range(self.size_x):
