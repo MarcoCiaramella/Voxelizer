@@ -11,11 +11,12 @@ class Mesh:
     PLY_HEADER_COLOR = "property uchar red\nproperty uchar green\nproperty uchar blue\n"
     PLY_HEADER_BOTTOM = "element face %d\nproperty list uchar uint vertex_indices\nend_header\n"
 
-    def __init__(self,size_x,size_y,size_z):
-        self.size_x = size_x
-        self.size_y = size_y
-        self.size_z = size_z
-        self.size = size_x*size_y*size_z
+    def __init__(self,images_manager):
+        self.images_manager = images_manager
+        self.size_x = images_manager.x
+        self.size_y = images_manager.y
+        self.size_z = images_manager.z
+        self.size = self.size_x*self.size_y*self.size_z
         self.voxels = []
         self.__build()
 
@@ -29,22 +30,12 @@ class Mesh:
                 for z in range(self.size_z):
                     arr_y.append(Voxel(x,y,z))
 
-    def coloring(self,pixels_front,pixels_back,pixels_right,pixels_left,pixels_top,pixels_bottom):
+    def coloring(self):
         for x in range(self.size_x):
             for y in range(self.size_y):
                 for z in range(self.size_z):
-                    if pixels_front[x,y][Color.A] == 0:
-                        continue
-                    if pixels_back[x,y][Color.A] == 0:
-                        continue
-                    if pixels_right[z,y][Color.A] == 0:
-                        continue
-                    if pixels_left[z,y][Color.A] == 0:
-                        continue
-                    if pixels_top[z,x][Color.A] == 0:
-                        continue
-                    if pixels_bottom[z,x][Color.A] == 0:
-                        continue
+                    if self.images_manager.not_alpha(x,y,z):
+                        pass
 
     def print(self):
         for x in range(self.size_x):
