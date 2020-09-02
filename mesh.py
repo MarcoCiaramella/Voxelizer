@@ -27,6 +27,13 @@ class Mesh:
                 for z in range(self.size_z):
                     arr_y.append(Voxel(x,y,z))
 
+    def coloring(self,pixels_front,pixels_back,pixels_right,pixels_left,pixels_top,pixels_bottom):
+        for x in range(self.size_x):
+            for y in range(self.size_y):
+                for z in range(self.size_z):
+                    rgba = pixels_front[x,y]
+                    print(rgba)
+
     def print(self):
         for x in range(self.size_x):
             for y in range(self.size_y):

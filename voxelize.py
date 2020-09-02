@@ -11,7 +11,7 @@ img_bottom = sys.argv[5]
 img_back = sys.argv[6]
 
 
-def getSize(img_front,img_side):
+def getSize(img_front,img_right):
     with Image.open(img_front) as image:
         x,y = image.size
     with Image.open(img_right) as image:
