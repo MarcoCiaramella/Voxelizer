@@ -32,7 +32,7 @@ class Mesh:
             for y in range(self.size_y):
                 for z in range(self.size_z):
                     rgba = pixels_front[x,y]
-                    print(rgba)
+                    print("alpha "+str(rgba[3]))
 
     def print(self):
         for x in range(self.size_x):
