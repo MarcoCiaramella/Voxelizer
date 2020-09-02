@@ -24,14 +24,14 @@ class ImagesManager:
     def not_alpha(self,x,y,z):
         if self.pixels_front[x,y][Color.A] == 0:
             return False
-        if self.pixels_back[self.size_x-x,y][Color.A] == 0:
+        if self.pixels_back[self.size_x-1-x,y][Color.A] == 0:
             return False
         if self.pixels_right[z,y][Color.A] == 0:
             return False
-        if self.pixels_left[self.size_z-z,y][Color.A] == 0:
+        if self.pixels_left[self.size_z-1-z,y][Color.A] == 0:
             return False
         if self.pixels_top[x,z][Color.A] == 0:
             return False
-        if self.pixels_bottom[x,self.size_z-z][Color.A] == 0:
+        if self.pixels_bottom[x,self.size_z-1-z][Color.A] == 0:
             return False
         return True

@@ -16,7 +16,6 @@ class Mesh:
         self.size_x = images_manager.size_x
         self.size_y = images_manager.size_y
         self.size_z = images_manager.size_z
-        self.size = self.size_x*self.size_y*self.size_z
         self.voxels = []
         self.__build()
 
@@ -29,11 +28,13 @@ class Mesh:
                 arr_x.append(arr_y)
                 for z in range(self.size_z):
                     arr_y.append(Voxel(x,y,z))
+        self.size = 0
         for x in range(self.size_x):
             for y in range(self.size_y):
                 for z in range(self.size_z):
                     if self.images_manager.not_alpha(x,y,z):
                         self.voxels[x][y][z].on = True
+                        self.size += 1
 
     def coloring(self):
         pass
