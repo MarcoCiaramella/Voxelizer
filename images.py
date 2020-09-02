@@ -12,7 +12,7 @@ class ImagesManager:
         self.pixels_left = Image.open(left).load()
         self.pixels_top = Image.open(top).load()
         self.pixels_bottom = Image.open(bottom).load()
-        self.x,self.y,self.z = self.__get_size(front,right)
+        self.size_x,self.size_y,self.size_z = self.__get_size(front,right)
 
     def __get_size(self,front,right):
         with Image.open(front) as image:
@@ -24,14 +24,14 @@ class ImagesManager:
     def not_alpha(self,x,y,z):
         if self.pixels_front[x,y][Color.A] == 0:
             return False
-        if self.pixels_back[x,y][Color.A] == 0:
+        if self.pixels_back[self.size_x-x,y][Color.A] == 0:
             return False
         if self.pixels_right[z,y][Color.A] == 0:
             return False
-        if self.pixels_left[z,y][Color.A] == 0:
+        if self.pixels_left[self.size_z-z,y][Color.A] == 0:
             return False
-        if self.pixels_top[z,x][Color.A] == 0:
+        if self.pixels_top[x,z][Color.A] == 0:
             return False
-        if self.pixels_bottom[z,x][Color.A] == 0:
+        if self.pixels_bottom[x,self.size_z-z][Color.A] == 0:
             return False
         return True

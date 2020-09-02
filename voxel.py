@@ -15,6 +15,7 @@ class Voxel:
         self.__init_indices()
         self.__init_normals()
         self.__init_colors()
+        self.on = False
 
     def __init_vertices(self):
         min_x = self.x

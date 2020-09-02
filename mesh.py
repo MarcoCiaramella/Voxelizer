@@ -13,9 +13,9 @@ class Mesh:
 
     def __init__(self,images_manager):
         self.images_manager = images_manager
-        self.size_x = images_manager.x
-        self.size_y = images_manager.y
-        self.size_z = images_manager.z
+        self.size_x = images_manager.size_x
+        self.size_y = images_manager.size_y
+        self.size_z = images_manager.size_z
         self.size = self.size_x*self.size_y*self.size_z
         self.voxels = []
         self.__build()
@@ -29,13 +29,14 @@ class Mesh:
                 arr_x.append(arr_y)
                 for z in range(self.size_z):
                     arr_y.append(Voxel(x,y,z))
-
-    def coloring(self):
         for x in range(self.size_x):
             for y in range(self.size_y):
                 for z in range(self.size_z):
                     if self.images_manager.not_alpha(x,y,z):
-                        pass
+                        self.voxels[x][y][z].on = True
+
+    def coloring(self):
+        pass
 
     def print(self):
         for x in range(self.size_x):
@@ -58,22 +59,23 @@ class Mesh:
         for x in range(self.size_x):
             for y in range(self.size_y):
                 for z in range(self.size_z):
-                    i = 0
-                    while i < Voxel.NUM_VERTICES:
-                        v = i*3
-                        n = i*3
-                        c = i*3
-                        vx = self.voxels[x][y][z].vertices[v]
-                        vy = self.voxels[x][y][z].vertices[v+1]
-                        vz = self.voxels[x][y][z].vertices[v+2]
-                        nx = self.voxels[x][y][z].normals[n]
-                        ny = self.voxels[x][y][z].normals[n+1]
-                        nz = self.voxels[x][y][z].normals[n+2]
-                        r = self.voxels[x][y][z].normals[c]
-                        g = self.voxels[x][y][z].normals[c+1]
-                        b = self.voxels[x][y][z].normals[c+2]
-                        i += 1
-                        content += '%f %f %f %f %f %f %d %d %d\n'%(vx,vy,vz,nx,ny,nz,r,g,b)
+                    if self.voxels[x][y][z].on:
+                        i = 0
+                        while i < Voxel.NUM_VERTICES:
+                            v = i*3
+                            n = i*3
+                            c = i*3
+                            vx = self.voxels[x][y][z].vertices[v]
+                            vy = self.voxels[x][y][z].vertices[v+1]
+                            vz = self.voxels[x][y][z].vertices[v+2]
+                            nx = self.voxels[x][y][z].normals[n]
+                            ny = self.voxels[x][y][z].normals[n+1]
+                            nz = self.voxels[x][y][z].normals[n+2]
+                            r = self.voxels[x][y][z].normals[c]
+                            g = self.voxels[x][y][z].normals[c+1]
+                            b = self.voxels[x][y][z].normals[c+2]
+                            i += 1
+                            content += '%f %f %f %f %f %f %d %d %d\n'%(vx,vy,vz,nx,ny,nz,r,g,b)
         with open('prova.ply','a') as f:
             f.write(content)
         content = ''
@@ -81,10 +83,11 @@ class Mesh:
         for x in range(self.size_x):
             for y in range(self.size_y):
                 for z in range(self.size_z):
-                    i = 0
-                    while i < Voxel.NUM_FACES:
-                        i += 1
-                        content += '3 %d %d %d\n'%(v,v+1,v+2)
-                        v += 3
+                    if self.voxels[x][y][z].on:
+                        i = 0
+                        while i < Voxel.NUM_FACES:
+                            i += 1
+                            content += '3 %d %d %d\n'%(v,v+1,v+2)
+                            v += 3
         with open('prova.ply','a') as f:
             f.write(content)
