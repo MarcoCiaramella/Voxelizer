@@ -13,6 +13,7 @@ class ImagesManager:
         self.pixels_top = Image.open(top).load()
         self.pixels_bottom = Image.open(bottom).load()
         self.size_x,self.size_y,self.size_z = self.__get_size(front,right)
+        self.__check(front,back,right,left,top,bottom)
 
     def __get_size(self,front,right):
         with Image.open(front) as image:
@@ -35,3 +36,17 @@ class ImagesManager:
         if self.pixels_bottom[x,self.size_z-1-z][Color.A] == 0:
             return False
         return True
+
+    def __check(self,front,back,right,left,top,bottom):
+        with Image.open(front) as image:
+            print("front "+str(image.size))
+        with Image.open(right) as image:
+            print("right "+str(image.size))
+        with Image.open(left) as image:
+            print("left "+str(image.size))
+        with Image.open(top) as image:
+            print("top "+str(image.size))
+        with Image.open(bottom) as image:
+            print("bottom "+str(image.size))
+        print("x,y,z")
+        print(self.size_x,self.size_y,self.size_z)
