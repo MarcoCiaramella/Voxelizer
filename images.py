@@ -22,7 +22,7 @@ class ImagesManager:
             z,y = image.size
         return x,y,z
 
-    def not_alpha(self,x,y,z):
+    def not_alpha2(self,x,y,z):
         if self.pixels_front[x,y][Color.A] == 0:
             return False
         if self.pixels_back[self.size_x-1-x,y][Color.A] == 0:
@@ -37,16 +37,37 @@ class ImagesManager:
             return False
         return True
 
+    def not_alpha(self,x,y,z):
+        if self.pixels_front[x,y][Color.A] == 0:
+            return False
+        if self.pixels_back[x,y][Color.A] == 0:
+            return False
+        if self.pixels_right[z,y][Color.A] == 0:
+            return False
+        if self.pixels_left[z,y][Color.A] == 0:
+            return False
+        if self.pixels_top[x,z][Color.A] == 0:
+            return False
+        if self.pixels_bottom[x,z][Color.A] == 0:
+            return False
+        return True
+
     def __check(self,front,back,right,left,top,bottom):
         with Image.open(front) as image:
-            print("front "+str(image.size))
+            self.__print_pixels(self.pixels_front,image.size)
+        with Image.open(back) as image:
+            self.__print_pixels(self.pixels_back,image.size)
         with Image.open(right) as image:
-            print("right "+str(image.size))
+            self.__print_pixels(self.pixels_right,image.size)
         with Image.open(left) as image:
-            print("left "+str(image.size))
+            self.__print_pixels(self.pixels_left,image.size)
         with Image.open(top) as image:
-            print("top "+str(image.size))
+            self.__print_pixels(self.pixels_top,image.size)
         with Image.open(bottom) as image:
-            print("bottom "+str(image.size))
-        print("x,y,z")
+            self.__print_pixels(self.pixels_bottom,image.size)
         print(self.size_x,self.size_y,self.size_z)
+
+    def __print_pixels(self,pixels,size):
+        for x in range(size[0]):
+                for y in range(size[1]):
+                    print("pixel "+str(pixels[x,y]))

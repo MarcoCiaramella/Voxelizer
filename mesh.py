@@ -18,6 +18,7 @@ class Mesh:
         self.size_z = images_manager.size_z
         self.voxels = []
         self.__build()
+        self.__check()
 
     def __build(self):
         for x in range(self.size_x):
@@ -28,13 +29,13 @@ class Mesh:
                 arr_x.append(arr_y)
                 for z in range(self.size_z):
                     arr_y.append(Voxel(x,y,z))
-        self.size = 0
+        self.num_voxels = 0
         for x in range(self.size_x):
             for y in range(self.size_y):
                 for z in range(self.size_z):
                     if self.images_manager.not_alpha(x,y,z):
                         self.voxels[x][y][z].on = True
-                        self.size += 1
+                        self.num_voxels += 1
 
     def coloring(self):
         pass
@@ -48,11 +49,11 @@ class Mesh:
 
     def export_ply(self):
         content = "%s%s%s%s%s"%(
-            Mesh.PLY_HEADER_TOP%(self.size*Voxel.NUM_VERTICES),
+            Mesh.PLY_HEADER_TOP%(self.num_voxels*Voxel.NUM_VERTICES),
             Mesh.PLY_HEADER_VERTEX,
             Mesh.PLY_HEADER_NORMAL,
             Mesh.PLY_HEADER_COLOR,
-            Mesh.PLY_HEADER_BOTTOM%(self.size*Voxel.NUM_FACES)
+            Mesh.PLY_HEADER_BOTTOM%(self.num_voxels*Voxel.NUM_FACES)
             )
         with open('prova.ply','w') as f:
             f.write(content)
@@ -92,3 +93,6 @@ class Mesh:
                             v += 3
         with open('prova.ply','a') as f:
             f.write(content)
+
+    def __check(self):
+        print("mesh num_voxels "+str(self.num_voxels))
