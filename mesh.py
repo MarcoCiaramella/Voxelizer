@@ -40,13 +40,6 @@ class Mesh:
     def coloring(self):
         pass
 
-    def print(self):
-        for x in range(self.size_x):
-            for y in range(self.size_y):
-                for z in range(self.size_z):
-                    print("voxel %d,%d,%d:"%(x,y,z))
-                    self.voxels[x][y][z].position.print()
-
     def export_ply(self):
         content = "%s%s%s%s%s"%(
             Mesh.PLY_HEADER_TOP%(self.num_voxels*Voxel.NUM_VERTICES),
@@ -95,4 +88,4 @@ class Mesh:
             f.write(content)
 
     def __check(self):
-        print("mesh num_voxels "+str(self.num_voxels))
+        print("num voxels "+str(self.num_voxels))
