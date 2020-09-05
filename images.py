@@ -13,7 +13,7 @@ class ImagesManager:
         self.pixels_top = Image.open(top).load()
         self.pixels_bottom = Image.open(bottom).load()
         self.size_x,self.size_y,self.size_z = self.__get_size(front,right)
-        #self.__check(front,back,right,left,top,bottom)
+        self.__check(front,back,right,left,top,bottom)
 
     def __get_size(self,front,right):
         with Image.open(front) as image:

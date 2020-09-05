@@ -13,4 +13,4 @@ img_bottom = sys.argv[5]
 img_back = sys.argv[6]
 
 mesh = Mesh(ImagesManager(img_front,img_back,img_right,img_left,img_top,img_bottom))
-mesh.export_ply()
+mesh.export_ply('mesh.ply')

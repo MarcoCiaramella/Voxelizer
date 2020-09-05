@@ -40,7 +40,7 @@ class Mesh:
     def coloring(self):
         pass
 
-    def export_ply(self):
+    def export_ply(self,name):
         content = "%s%s%s%s%s"%(
             Mesh.PLY_HEADER_TOP%(self.num_voxels*Voxel.NUM_VERTICES),
             Mesh.PLY_HEADER_VERTEX,
@@ -48,7 +48,7 @@ class Mesh:
             Mesh.PLY_HEADER_COLOR,
             Mesh.PLY_HEADER_BOTTOM%(self.num_voxels*Voxel.NUM_FACES)
             )
-        with open('prova.ply','w') as f:
+        with open(name,'w') as f:
             f.write(content)
         content = ''
         for x in range(self.size_x):
@@ -71,7 +71,7 @@ class Mesh:
                             b = self.voxels[x][y][z].normals[c+2]
                             i += 1
                             content += '%f %f %f %f %f %f %d %d %d\n'%(vx,vy,vz,nx,ny,nz,r,g,b)
-        with open('prova.ply','a') as f:
+        with open(name,'a') as f:
             f.write(content)
         content = ''
         v = 0
@@ -84,7 +84,7 @@ class Mesh:
                             i += 1
                             content += '3 %d %d %d\n'%(v,v+1,v+2)
                             v += 3
-        with open('prova.ply','a') as f:
+        with open(name,'a') as f:
             f.write(content)
 
     def __check(self):
