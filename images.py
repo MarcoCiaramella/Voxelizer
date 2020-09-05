@@ -77,3 +77,13 @@ class ImagesManager:
         for x in range(size[0]):
                 for y in range(size[1]):
                     print("pixel %d %d %s"%(x,y,str(pixels[x,y])))
+
+    def get_colors(self,x,y,z):
+        return {
+            'front': list(self.pixels_front[x,self.size_y-1-y]),
+            'back': list(self.pixels_back[x,self.size_y-1-y]),
+            'right': list(self.pixels_right[z,self.size_y-1-y]),
+            'left': list(self.pixels_left[z,self.size_y-1-y]),
+            'top': list(self.pixels_top[x,self.size_z-1-z]),
+            'bottom': list(self.pixels_bottom[x,self.size_z-1-z])
+        }

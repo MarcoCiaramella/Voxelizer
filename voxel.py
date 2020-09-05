@@ -24,37 +24,47 @@ class Voxel:
         max_y = self.y+1
         min_z = self.z
         max_z = self.z+1
-        self.vertices = [
+        face_front = [
             min_x,min_y,max_z,
             max_x,min_y,max_z,
             max_x,max_y,max_z,
             max_x,max_y,max_z,
             min_x,max_y,max_z,
-            min_x,min_y,max_z,
+            min_x,min_y,max_z
+            ]
+        face_right = [
             max_x,min_y,max_z,
             max_x,min_y,min_z,
             max_x,max_y,min_z,
             max_x,max_y,min_z,
             max_x,max_y,max_z,
-            max_x,min_y,max_z,
+            max_x,min_y,max_z
+            ]
+        face_back = [
             min_x,max_y,min_z,
             max_x,max_y,min_z,
             max_x,min_y,min_z,
             max_x,min_y,min_z,
             min_x,min_y,min_z,
-            min_x,max_y,min_z,
+            min_x,max_y,min_z
+            ]
+        face_left = [
             min_x,min_y,min_z,
             min_x,min_y,max_z,
             min_x,max_y,max_z,
             min_x,max_y,max_z,
             min_x,max_y,min_z,
-            min_x,min_y,min_z,
+            min_x,min_y,min_z
+            ]
+        face_bottom = [
             min_x,min_y,min_z,
             max_x,min_y,min_z,
             max_x,min_y,max_z,
             max_x,min_y,max_z,
             min_x,min_y,max_z,
-            min_x,min_y,min_z,
+            min_x,min_y,min_z
+            ]
+        face_top = [
             min_x,max_y,max_z,
             max_x,max_y,max_z,
             max_x,max_y,min_z,
@@ -62,6 +72,7 @@ class Voxel:
             min_x,max_y,min_z,
             min_x,max_y,max_z
             ]
+        self.vertices = face_front + face_right + face_back + face_left + face_bottom + face_top
 
     def __init_indices(self):
         self.indices = [
@@ -158,3 +169,16 @@ class Voxel:
             0,0,0,
             0,0,0
         ]
+
+    def coloring(self,colors):
+        color_front = self.__get_face_color(colors['front'])
+        color_back = self.__get_face_color(colors['back'])
+        color_right = self.__get_face_color(colors['right'])
+        color_left = self.__get_face_color(colors['left'])
+        color_top = self.__get_face_color(colors['top'])
+        color_bottom = self.__get_face_color(colors['bottom'])
+        self.colors = []
+        self.colors = color_front + color_right + color_back + color_left + color_bottom + color_top
+
+    def __get_face_color(self,color):
+        return color+color+color+color+color+color

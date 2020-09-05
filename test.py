@@ -21,4 +21,5 @@ img_bottom = img_top"""
 
 
 mesh = Mesh(ImagesManager(img_front,img_back,img_right,img_left,img_top,img_bottom))
+mesh.coloring()
 mesh.export_ply('test.ply')

@@ -38,7 +38,10 @@ class Mesh:
                         self.num_voxels += 1
 
     def coloring(self):
-        pass
+        for x in range(self.size_x):
+            for y in range(self.size_y):
+                for z in range(self.size_z):
+                    self.voxels[x][y][z].coloring(self.images_manager.get_colors(x,y,z))
 
     def export_ply(self,name):
         content = "%s%s%s%s%s"%(
@@ -66,9 +69,9 @@ class Mesh:
                             nx = self.voxels[x][y][z].normals[n]
                             ny = self.voxels[x][y][z].normals[n+1]
                             nz = self.voxels[x][y][z].normals[n+2]
-                            r = self.voxels[x][y][z].normals[c]
-                            g = self.voxels[x][y][z].normals[c+1]
-                            b = self.voxels[x][y][z].normals[c+2]
+                            r = self.voxels[x][y][z].colors[c]
+                            g = self.voxels[x][y][z].colors[c+1]
+                            b = self.voxels[x][y][z].colors[c+2]
                             i += 1
                             content += '%f %f %f %f %f %f %d %d %d\n'%(vx,vy,vz,nx,ny,nz,r,g,b)
         with open(name,'a') as f:
