@@ -41,7 +41,8 @@ class Mesh:
         for x in range(self.size_x):
             for y in range(self.size_y):
                 for z in range(self.size_z):
-                    self.voxels[x][y][z].coloring(self.images_manager.get_colors(x,y,z))
+                    if self.voxels[x][y][z].on:
+                        self.voxels[x][y][z].coloring(self.images_manager.get_colors(x,y,z))
 
     def export_ply(self,name):
         content = "%s%s%s%s%s"%(
@@ -62,7 +63,7 @@ class Mesh:
                         while i < Voxel.NUM_VERTICES:
                             v = i*3
                             n = i*3
-                            c = i*3
+                            c = i*4
                             vx = self.voxels[x][y][z].vertices[v]
                             vy = self.voxels[x][y][z].vertices[v+1]
                             vz = self.voxels[x][y][z].vertices[v+2]
