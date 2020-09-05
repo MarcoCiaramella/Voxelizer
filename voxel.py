@@ -23,7 +23,7 @@ class Voxel:
         min_y = self.y
         max_y = self.y+1
         min_z = self.z
-        max_z = self.z+1
+        max_z = self.z-1
         face_front = [
             min_x,min_y,max_z,
             max_x,min_y,max_z,
