@@ -14,9 +14,8 @@ The following example explain how to define the 6 images
 
 ![Image example](https://github.com/MarcoCiaramella/Voxelize/blob/master/tutorial/usage_images.png)
 
-The images orientation must follows the x,y,z system as shown in the example.
-
-The black pixels in the image above must have full alpha value (full transparency).
+1. The images orientation must follows the x,y,z system as shown in the example.
+1. The black pixels in the image above must have full alpha value (full transparency).
 
 And this is the output
 
