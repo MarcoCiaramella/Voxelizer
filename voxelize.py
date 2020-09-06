@@ -17,6 +17,8 @@ img_top = sys.argv[4]
 img_bottom = sys.argv[5]
 img_back = sys.argv[6]
 ply = sys.argv[7]
+if ply[-4:] != '.ply':
+    ply += '.ply'
 
 mesh = Mesh(ImagesManager(img_front,img_back,img_right,img_left,img_top,img_bottom))
 mesh.export_ply(ply)
