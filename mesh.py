@@ -92,4 +92,4 @@ class Mesh:
             f.write(content)
 
     def __check(self):
-        print("num voxels "+str(self.num_voxels))
+        print("num voxels: "+str(self.num_voxels))

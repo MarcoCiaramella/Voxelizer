@@ -22,3 +22,5 @@ if ply[-4:] != '.ply':
 
 mesh = Mesh(ImagesManager(img_front,img_back,img_right,img_left,img_top,img_bottom))
 mesh.export_ply(ply)
+
+print('output: '+ply)
