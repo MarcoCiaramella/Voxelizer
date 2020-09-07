@@ -3,8 +3,8 @@ from vector3f import Vector3f
 
 class Voxel:
 
-    NUM_VERTICES = 36
-    NUM_FACES = 12
+    NUM_VERTICES = 24
+    NUM_FACES = 6
 
     def __init__(self,x,y,z):
         self.x = x
@@ -28,90 +28,64 @@ class Voxel:
             min_x,min_y,max_z,
             max_x,min_y,max_z,
             max_x,max_y,max_z,
-            max_x,max_y,max_z,
-            min_x,max_y,max_z,
-            min_x,min_y,max_z
+            min_x,max_y,max_z
             ]
         face_right = [
             max_x,min_y,max_z,
             max_x,min_y,min_z,
             max_x,max_y,min_z,
-            max_x,max_y,min_z,
-            max_x,max_y,max_z,
-            max_x,min_y,max_z
+            max_x,max_y,max_z
             ]
         face_back = [
-            min_x,max_y,min_z,
-            max_x,max_y,min_z,
-            max_x,min_y,min_z,
             max_x,min_y,min_z,
             min_x,min_y,min_z,
-            min_x,max_y,min_z
+            min_x,max_y,min_z,
+            max_x,max_y,min_z
             ]
         face_left = [
             min_x,min_y,min_z,
             min_x,min_y,max_z,
             min_x,max_y,max_z,
-            min_x,max_y,max_z,
-            min_x,max_y,min_z,
-            min_x,min_y,min_z
+            min_x,max_y,min_z
             ]
         face_bottom = [
-            min_x,min_y,min_z,
-            max_x,min_y,min_z,
-            max_x,min_y,max_z,
             max_x,min_y,max_z,
             min_x,min_y,max_z,
-            min_x,min_y,min_z
+            min_x,min_y,min_z,
+            max_x,min_y,min_z
             ]
         face_top = [
             min_x,max_y,max_z,
             max_x,max_y,max_z,
             max_x,max_y,min_z,
-            max_x,max_y,min_z,
-            min_x,max_y,min_z,
-            min_x,max_y,max_z
+            min_x,max_y,min_z
             ]
         self.vertices = face_front + face_right + face_back + face_left + face_bottom + face_top
 
     def __init_indices(self):
         self.indices = [
-            0,1,2,
-            3,4,5,
-            6,7,8,
-            9,10,11,
-            12,13,14,
-            15,16,17,
-            18,19,20,
-            21,22,23,
-            24,25,26,
-            27,28,29,
-            30,31,32,
-            33,34,35
+            0,1,2,3,
+            4,5,6,7,
+            8,9,10,11,
+            12,13,14,15,
+            16,17,18,19,
+            20,21,22,23
             ]
 
     def __init_normals(self):
         self.normals = [
-            0,0,1,
-            0,0,1,
-            0,0,1,
-            0,0,1,
-            0,0,1,
-            0,0,1,
-            1,0,0,
-            1,0,0,
-            1,0,0,
-            1,0,0,
-            1,0,0,
-            1,0,0,
             0,0,-1,
             0,0,-1,
             0,0,-1,
             0,0,-1,
-            0,0,-1,
-            0,0,-1,
-            -1,0,0,
-            -1,0,0,
+            1,0,0,
+            1,0,0,
+            1,0,0,
+            1,0,0,
+            0,0,1,
+            0,0,1,
+            0,0,1,
+            0,0,1,
             -1,0,0,
             -1,0,0,
             -1,0,0,
@@ -120,10 +94,6 @@ class Voxel:
             0,-1,0,
             0,-1,0,
             0,-1,0,
-            0,-1,0,
-            0,-1,0,
-            0,1,0,
-            0,1,0,
             0,1,0,
             0,1,0,
             0,1,0,
@@ -132,18 +102,6 @@ class Voxel:
 
     def __init_colors(self):
         self.colors = [
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
-            0,0,0,0,
             0,0,0,0,
             0,0,0,0,
             0,0,0,0,

@@ -86,8 +86,8 @@ class Mesh:
                         i = 0
                         while i < Voxel.NUM_FACES:
                             i += 1
-                            content += '3 %d %d %d\n'%(v,v+1,v+2)
-                            v += 3
+                            content += '4 %d %d %d %d\n'%(v,v+1,v+2,v+3)
+                            v += 4
         with open(name,'a') as f:
             f.write(content)
 
