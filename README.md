@@ -10,7 +10,7 @@ The input images must be a rapresentation of the 6 sides of a 3D model (front, b
 python voxelize.py <img front> <img right> <img left> <img top> <img bottom> <img back> <ply output file>
 ```
 
-The following example explain how to define the 6 images
+The following example explains how to define the 6 images
 
 ![Image example](https://github.com/MarcoCiaramella/Voxelize/blob/master/tutorial/usage_images.png)
 
