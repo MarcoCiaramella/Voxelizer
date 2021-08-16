@@ -7,7 +7,7 @@ from images import ImagesManager
 
 
 if len(sys.argv) != 8:
-    print("Usage: python voxelize.py <img front> <img right> <img left> <img top> <img bottom> <img back> <ply output file>")
+    print("Usage: python voxelizer.py <img front> <img right> <img left> <img top> <img bottom> <img back> <ply output file>")
     exit()
 
 img_front = sys.argv[1]
