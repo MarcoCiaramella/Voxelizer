@@ -1,6 +1,6 @@
 # Voxelizer
 
-Voxelizer is a tool which convert pixel in images in voxel. It takes 6 images as input and produce a 3D model as a combination of this images. The output is a mesh in PLY format.
+Voxelizer is a tool that convert pixel in images in voxel. It takes 6 images as input and produce a 3D model as a combination of this images. The output is a mesh in PLY format.
 
 ## How to use
 
