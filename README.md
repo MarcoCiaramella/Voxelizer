@@ -7,7 +7,7 @@ Voxelizer is a tool which convert pixel in images in voxel. It takes 6 images as
 The input images must be a rapresentation of the 6 sides of a 3D model (front, back, top, bottom, right and left).
 
 ```
-python voxelize.py <img front> <img right> <img left> <img top> <img bottom> <img back> <ply output file>
+python voxelizer.py <img front> <img right> <img left> <img top> <img bottom> <img back> <ply output file>
 ```
 
 The following example explains how to define the 6 images
